@@ -1,4 +1,4 @@
-const pantsuits = [
+export const pantsuits = [
     {
         id: 1,
         vendor_code: 4230,
@@ -16,4 +16,3 @@ const pantsuits = [
         img: '/goods/KRA_4249.jpg',
     },
 ]
-module.exports = { pantsuits }

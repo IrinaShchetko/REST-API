@@ -1,4 +1,4 @@
-const dresses = [
+export const dresses = [
     {
         id: 1,
         vendor_code: 3279,
@@ -23,5 +23,3 @@ const dresses = [
         img: '/goods/KRA_4385.jpg',
     },
 ]
-
-module.exports = { dresses }

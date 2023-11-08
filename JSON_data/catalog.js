@@ -1,9 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const { dresses } = require('./dresses')
-const { pantsuits } = require('./pantsuits')
+import {dresses} from "./dresses.js"
+import {pantsuits} from "./pantsuits.js"
 
-const catalog = [
+export const catalog = [
     {
         id: 1,
         category: 'coats',
@@ -70,15 +68,3 @@ const catalog = [
 
     },
 ]
-router.get(`/`, function (req, res) {
-    res.status(200).json(catalog)
-})
-router.post(`/`, function (req, res) {
-    const { name, img } = req.body
-    res.status(200).json([...catalog, { id: catalog.length + 1, name, img }])
-})
-router.delete(`/`, function (req, res) {
-    const { id } = req.body
-    res.status(200).json(catalog.filter(item => item.id !== id))
-})
-module.exports = router
