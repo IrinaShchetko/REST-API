@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { catalog } from "../JSON_data/catalog.js"
+import { catalog } from "../data/catalog.js"
 export const router = Router()
 
 router.get(`/`, function (req, res) {
@@ -13,7 +13,7 @@ router.delete(`/`, function (req, res) {
     const { id } = req.body
     res.status(200).json(catalog.filter(item => item.id !== id))
 })
-// router.get(`/goods`, function (req, res) {
+// router.get(`/dresses`, function (req, res) {
 //     res.status(200).json(req.body)
 // })
 // router.post(`/goods`, function (req, res) {
