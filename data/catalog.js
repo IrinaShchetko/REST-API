@@ -1,3 +1,4 @@
+import { blouses } from "./blouses.js"
 import {dresses} from "./dresses.js"
 import {pantsuits} from "./pantsuits.js"
 
@@ -20,7 +21,7 @@ export const catalog = [
         id: 3,
         category: 'blouses',
         img: '/catalog/blouses.jpg',
-        goods: []
+        goods: blouses
 
     },
     {
