@@ -3,6 +3,7 @@ import { dresses } from "../data/dresses.js"
 export const routerDresses = Router()
 
 routerDresses.get(`/`, function (req, res) {
+    // res.header('Cache-Control', 'no-cache')
     res.status(200).json(dresses)
 })
 routerDresses.post(`/`, function (req, res) {
