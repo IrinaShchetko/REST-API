@@ -23,5 +23,4 @@ This project is built using:
 
     *Node.js
     *Express.js
-    *Cors library
-
+    *MongoDB
