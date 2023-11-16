@@ -1,15 +1,28 @@
 import {Router} from "express"
-import { catalog } from "../data/catalog.js"
-export const routerCatalog = Router()
+import { MongoClient } from 'mongodb'
 
-routerCatalog.get(`/`, function (req, res) {
-    res.status(200).json(catalog)
-})
-routerCatalog.post(`/`, function (req, res) {
-    const { name, img } = req.body
-    res.status(200).json([...catalog, { id: catalog.length + 1, name, img }])
-})
-routerCatalog.delete(`/`, function (req, res) {
-    const { id } = req.body
-    res.status(200).json(catalog.filter(item => item.id !== id))
-})
+
+const url = "mongodb://127.0.0.1:27017/zebra/"
+const mongoClient = new MongoClient(url)
+
+export const routerCatalog = Router()
+async function runCollection() {
+    try {
+      const db = mongoClient.db("zebra")
+      const collection = db.collection('catalog')
+      const results = await collection.find().toArray()
+      return results
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+  }
+  routerCatalog.get('/', async (req, res) => {
+    try {
+      const data = await runCollection()
+      res.json(data)
+    } catch (err) {
+      console.error(err)
+      res.status(500).send('Internal Server Error')
+    }
+  })

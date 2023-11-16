@@ -1,16 +1,29 @@
-import {Router} from "express"
-import { dresses } from "../data/dresses.js"
-export const routerDresses = Router()
+import { Router } from "express"
+import { MongoClient } from 'mongodb'
+export const routerGoods = Router()
 
-routerDresses.get(`/`, function (req, res) {
-    // res.header('Cache-Control', 'no-cache')
-    res.status(200).json(dresses)
-})
-routerDresses.post(`/`, function (req, res) {
-    const { name, img } = req.body
-    res.status(200).json([...dresses, { id: dresses.length + 1, name, img }])
-})
-routerDresses.delete(`/`, function (req, res) {
-    const { id } = req.body
-    res.status(200).json(dresses.filter(item => item.id !== id))
+
+const url = "mongodb://127.0.0.1:27017/zebra/"
+const mongoClient = new MongoClient(url)
+async function runCategory(category) {
+    try {
+        const db = mongoClient.db("zebra")
+        const collection = db.collection("goods")
+        const query = { category: category }
+        const results = await collection.find(query).toArray()
+        return results
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+routerGoods.get('/:category', async (req, res) => {
+    const { category } = req.params
+    try {
+        const data = await runCategory(category)
+        res.json(data)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send('Internal Server Error')
+    }
 })
