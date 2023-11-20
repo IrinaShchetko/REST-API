@@ -9,7 +9,7 @@ async function runCategory(category) {
     try {
         const db = mongoClient.db("zebra")
         const collection = db.collection("goods")
-        const query = { category: category }
+        const query = category === 'all' ? {} : { category: category }
         const results = await collection.find(query).toArray()
         return results
     } catch (err) {
