@@ -1,7 +1,7 @@
-import { Router } from "express"
+import { Router } from 'express'
 import { MongoClient, ObjectId } from 'mongodb'
 
-const url = "mongodb://127.0.0.1:27017/zebra/"
+const url = 'mongodb://127.0.0.1:27017/zebra/'
 const mongoClient = new MongoClient(url)
 
 export const routerCrud = Router()

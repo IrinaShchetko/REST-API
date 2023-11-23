@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import { Router } from "express"
+import { Router } from 'express'
 
 export const routerCompressed = Router()
 // Новый маршрут для сжатия изображений
